@@ -46,12 +46,12 @@ export default function FeatureDetailPage({ params }: Params) {
             <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur">
               <p className="text-sm uppercase tracking-[0.3em] text-primary-200">Aksi cepat</p>
               <h3 className="mt-3 text-xl font-semibold">{detail.cta.description}</h3>
-              <Link
+              <a
                 href={detail.cta.href}
                 className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary-500 px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-primary-400"
               >
                 {detail.cta.label}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
