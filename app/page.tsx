@@ -587,10 +587,16 @@ export default function Home() {
         href="https://wa.me/6281295564522"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_15px_35px_rgba(12,18,34,0.25)] ring-1 ring-dark/5 transition hover:scale-105"
+        className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0_15px_35px_rgba(12,18,34,0.25)] ring-1 ring-dark/5 transition hover:scale-105 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
         aria-label="Chat WhatsApp Admin Al Arba'in"
       >
-        <Image src="/images/logo_wa.png" alt="WhatsApp" width={32} height={32} />
+        <Image
+          src="/images/logo_wa.png"
+          alt="WhatsApp"
+          width={32}
+          height={32}
+          className="h-6 w-6 object-contain sm:h-8 sm:w-8"
+        />
       </a>
     </main>
   );

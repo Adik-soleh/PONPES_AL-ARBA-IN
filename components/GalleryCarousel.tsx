@@ -18,11 +18,23 @@ interface GalleryCarouselProps {
 
 const getOffset = (index: number, active: number, length: number) => (index - active + length) % length;
 
+const centerTransform = 'translate-x-[-50%]';
+const nearRightTransform =
+  'translate-x-[calc(-50%+3rem)] sm:translate-x-[calc(-50%+5rem)] lg:translate-x-[calc(-50%+10rem)] xl:translate-x-[calc(-50%+15rem)]';
+const nearLeftTransform =
+  'translate-x-[calc(-50%-3rem)] sm:translate-x-[calc(-50%-5rem)] lg:translate-x-[calc(-50%-10rem)] xl:translate-x-[calc(-50%-15rem)]';
+const farRightTransform =
+  'translate-x-[calc(-50%+6rem)] md:translate-x-[calc(-50%+12rem)] lg:translate-x-[calc(-50%+16rem)] xl:translate-x-[calc(-50%+22rem)]';
+const farLeftTransform =
+  'translate-x-[calc(-50%-6rem)] md:translate-x-[calc(-50%-12rem)] lg:translate-x-[calc(-50%-16rem)] xl:translate-x-[calc(-50%-22rem)]';
+
 const cardClass = (offset: number, length: number) => {
-  if (offset === 0) return 'z-30 scale-105 opacity-100 shadow-[0_35px_60px_rgba(12,18,34,0.18)]';
-  if (offset === 1 || (length > 2 && offset === length - 1)) return `${offset === 1 ? 'ml-[15rem]' : '-ml-[15rem]'} scale-95 opacity-80 z-10 shadow-[0_25px_40px_rgba(12,18,34,0.08)]`;
-  if (offset === 2 || (length > 3 && offset === length - 2)) return `${offset === 2 ? 'ml-[28rem]' : '-ml-[28rem]'} scale-90 opacity-0 md:opacity-40 z-0`;
-  return 'opacity-0 pointer-events-none';
+  if (offset === 0) return `${centerTransform} z-30 scale-105 opacity-100 shadow-[0_35px_60px_rgba(12,18,34,0.18)]`;
+  if (offset === 1 || (length > 2 && offset === length - 1))
+    return `${offset === 1 ? nearRightTransform : nearLeftTransform} scale-95 opacity-80 z-10 shadow-[0_25px_40px_rgba(12,18,34,0.08)]`;
+  if (offset === 2 || (length > 3 && offset === length - 2))
+    return `${offset === 2 ? farRightTransform : farLeftTransform} scale-90 opacity-0 md:opacity-40 z-0`;
+  return `${centerTransform} opacity-0 pointer-events-none`;
 };
 
 const imageTone = (offset: number) => (offset === 0 ? 'filter-none' : 'filter grayscale opacity-70');
@@ -82,7 +94,7 @@ export default function GalleryCarousel({ items }: GalleryCarouselProps) {
               return (
                 <div
                   key={item.title}
-                  className={`absolute inset-y-0 left-1/2 flex w-72 -translate-x-1/2 flex-col items-center rounded-[32px] bg-white p-5 text-center transition-all duration-500 ease-out md:w-80 ${cardClass(
+                  className={`absolute inset-y-0 left-1/2 flex w-72 flex-col items-center rounded-[32px] bg-white p-5 text-center transition-all duration-500 ease-out md:w-80 ${cardClass(
                     offset,
                     items.length
                   )}`}
